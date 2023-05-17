@@ -26,22 +26,22 @@ module "aws_vpc" {
 
   public_subnet_tags = {
     "kubernetes.io/cluster/testapp-eks-cluster" = "shared"
-    "kubernetes.io/role/elb"                  = 1
+    "kubernetes.io/role/elb"                    = 1
   }
 
   private_subnet_tags = {
     "kubernetes.io/cluster/testapp-eks-cluster" = "shared"
-    "kubernetes.io/role/internal-elb"         = 1
+    "kubernetes.io/role/internal-elb"           = 1
   }
 }
 
 resource "aws_instance" "app_server" {
-  ami           = data.aws_ami.latest_ubuntu.id
-  instance_type = var.instance_type
+  ami                         = data.aws_ami.latest_ubuntu.id
+  instance_type               = var.instance_type
   key_name                    = var.key_name
   associate_public_ip_address = true
-  vpc_security_group_ids = [aws_security_group.jenkins-SG.id]
-  subnet_id              = module.aws_vpc.public_subnets[0]
+  vpc_security_group_ids      = [aws_security_group.jenkins-SG.id]
+  subnet_id                   = module.aws_vpc.public_subnets[0]
   user_data                   = file("app-server-script.sh")
 
   tags = {
@@ -51,8 +51,6 @@ resource "aws_instance" "app_server" {
 resource "aws_security_group" "jenkins-SG" {
   name        = "jenkins-security-group"
   description = "Jenkins security group"
-
-  vpc_id = module.aws_vpc.id
 
   ingress {
     from_port   = 8080
