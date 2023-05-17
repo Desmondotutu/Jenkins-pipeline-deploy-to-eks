@@ -1,4 +1,4 @@
-# SProject Name: End to end deployment of Application to Kubernetes using a Jenkins CI/CD Pipeline
+# Project Name: End to end deployment of Application to Kubernetes using a Jenkins CI/CD Pipeline
 # Steps for the project
 
 This is project consist of setting up a CICD pipeline using Jenkins to provision AWS VPC and jenkins server plus kubernetes cluster to deploy our testapp using terraform (IaC tool). feel free to clone this repository, contribute to this project and comment.
