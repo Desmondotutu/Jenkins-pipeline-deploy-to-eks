@@ -6,8 +6,8 @@ module "eks" {
 
   cluster_endpoint_public_access = true
 
-  vpc_id     = module.aws_vpc.vpc_id
-  subnet_ids = module.aws_vpc.private_subnets
+  vpc_id     = module.kubernetes_vpc.vpc_id
+  subnet_ids = module.kubernetes_vpc.private_subnets
 
   tags = {
     environment = "development"
