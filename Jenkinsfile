@@ -20,7 +20,7 @@ pipeline {
         stage("Deploy to EKS") {
             steps {
                 script {
-                    dir('kubernetes') {
+                    dir('deployment-manifest') {
                         sh "aws eks update-kubeconfig --name testapp-eks-cluster"
                         sh "kubectl apply -f testapp-deployment.yaml"
                         sh "kubectl apply -f testapp-service.yaml"
