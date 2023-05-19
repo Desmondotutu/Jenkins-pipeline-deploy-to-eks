@@ -10,6 +10,9 @@ https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
 https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
 ## 1. Create a Keypair that matches your keypair
+
+Login to your AWS console and navigate to EC2 Dashboard and create a keypair tobe used to connect to our jenkins server. Make sure to rename the keypair in main.tf file under the aws_instance resource section to match the keypair you just created.
+
 # jenkins-pipeline-deploy-to-eks
 
 This pipeline uses terraform to provision resources in aws cloud and automatically setup our jenkins server using the "jenkins-server.sh script found in the terraform folder in our directory". We can change into the terraform directory in our root folder and use the terraform init, terraform validate and terraform plan commands to see the resources that will be provisioned. We assume that your AWS_ACCESS_KEY_ID and AWS_SECRET_KEY and REGION have been configured.
@@ -29,15 +32,25 @@ To view the resources to be pprovisioned, use the terraform plan command.
 ```bash
 terraform plan
 ```
-
-
- provision eks-cluster for our testapp deployment. NB: We're required to ssh into our jenkins serveer to obtain our admin password as well as setup a jenkins pipeline and installing necessary plugins to run using the Jenkinsfile in our root repository. Our jenkins pipeline will pull our code from github repository and Do dependency checks, scan vulnerability and quality gates and build docker image using Dockerfile in our repository and push it to dockerhub. Be sure to configure your jenkins aws and dockerhub credentials in our jenkins server. 
+Use terraform apply command to apply the resources creation. 
+```bash
+terraform apply
+```
+Our jenkins server public IP will be displayed on screen when terraform complets the resource creation. Use it to login to our server and grap the admin password using the following command.
+```bash
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+Provision eks-cluster for our testapp deployment. NB: We're required to ssh into our jenkins serveer to obtain our admin password as well as setup a jenkins pipeline and installing necessary plugins to run using the Jenkinsfile in our root repository. Our jenkins pipeline will pull our code from github repository and Do dependency checks, scan vulnerability and quality gates and build docker image using Dockerfile in our repository and push it to dockerhub. Be sure to configure your jenkins aws and dockerhub credentials in our jenkins server. 
 
 ## 2. Create a Jenkins Server with all the dependencies, libraries and packagies needed.
 ## 2. Once completed, access the Jenkins server and Set it up
 
 Configure necessary credentials and install plugins on our jenkins server
 ## 4. Run the jenkins-pipeline-deploy-to-eks to create Kubernetes Cluster, create deployments and Services
+Note: 
+# A. If you initially used terraform init, plan and apply commands to provission resources at the beginning of this project, use the "Jenkinsfile2" to deploy to our EKS cluster skipping the steps of attemting to provission resources that already exist.
+# B. If you already have your jenkins server setup and and wish to provission just the EKS cluster and deploy using Jenkins Pipeline, use "Jenkinsfile1" in your pipeline.
+
 ## 5. Test the application.
 
 Access our application using the loadbalancer endpoint on our eks-cluster
