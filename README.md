@@ -11,7 +11,7 @@ https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
 ## 1. Create a Keypair that matches your keypair
 
-Login to your AWS console and navigate to EC2 Dashboard and create a keypair tobe used to connect to our jenkins server. Make sure to rename the keypair in main.tf file under the aws_instance resource section to match the keypair you just created.
+Login to your AWS console and navigate to EC2 Dashboard and create a keypair tobe used to connect to our jenkins server. Make sure to rename the keypair in main.tf file under the aws_instance resource section to match the keypair you just created. Create an S3 buckeck and rename the s3 bucket name in "backend.tf" file found in the terraform folder in our repository. We used s3 to securely store our terraform state file which is crucial to the terraform stack.
 
 # jenkins-pipeline-deploy-to-eks
 
