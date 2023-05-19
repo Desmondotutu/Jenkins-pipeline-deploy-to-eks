@@ -3,7 +3,7 @@ FROM nginx
 
 WORKDIR /usr/share/nginx/html
 # Copy the website code into the container
-COPY src /usr/share/nginx/html
+COPY src/ .
 
 # Expose port 80 for the Nginx server
 EXPOSE 80
