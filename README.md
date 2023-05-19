@@ -12,17 +12,17 @@ This pipeline uses terraform to provision resources in aws cloud and automatical
 aws configure
 ```
 While in the terraform directory, we initialize terraform using the terraform init command.
----bash
+```bash
 terraform init
----
+```
 Use the terraform validate command to validate our HL synthax and structure of our resources to be provision
----bash
+```bash
 terraform validate
----
+```
 To view the resources to be pprovisioned, use the terraform plan command.
----bash
+```bash
 terraform plan
----
+```
 
 
  provision eks-cluster for our testapp deployment. NB: We're required to ssh into our jenkins serveer to obtain our admin password as well as setup a jenkins pipeline and installing necessary plugins to run using the Jenkinsfile in our root repository. Our jenkins pipeline will pull our code from github repository and Do dependency checks, scan vulnerability and quality gates and build docker image using Dockerfile in our repository and push it to dockerhub. Be sure to configure your jenkins aws and dockerhub credentials in our jenkins server. 
