@@ -8,7 +8,7 @@ We can either use terraform commands manually to provision our servers and resou
 
 This pipeline uses terraform to provision resources in aws cloud and automatically setup our jenkins server using the "jenkins-server.sh script found in the terraform folder in our directory". We can change into the terraform directory in our root folder and use the terraform init, terraform validate and terraform plan commands to see the resources that will be provisioned. We assume that your AWS_ACCESS_KEY_ID and AWS_SECRET_KEY and REGION have been configured.
 
----bash
+--- bash
 aws configure
 ---
 While in the terraform directory, we initialize terraform using the terraform init command.
