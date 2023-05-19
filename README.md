@@ -44,15 +44,21 @@ Provision eks-cluster for our testapp deployment. NB: We're required to ssh into
 
 ## 2. Create a Jenkins Server with all the dependencies, libraries and packagies needed.
 ## 2. Once completed, access the Jenkins server and Set it up
+Use Jenkins credentials under "Manage Jenkins" to setup our aws_access_key_id and aws_secret_key on jenkins. This credentials are necessary and are used as environment variables in our Jenkins files. Use the exact match as found in the Jenkins files.
+Configure necessary credentials and install plugins on our jenkins server.
 
-Configure necessary credentials and install plugins on our jenkins server
 ## 4. Run the jenkins-pipeline-deploy-to-eks to create Kubernetes Cluster, create deployments and Services
-Note: 
-# A. If you initially used terraform init, plan and apply commands to provission resources at the beginning of this project, use the "Jenkinsfile2" to deploy to our EKS cluster skipping the steps of attemting to provission resources that already exist.
-# B. If you already have your jenkins server setup and and wish to provission just the EKS cluster and deploy using Jenkins Pipeline, use "Jenkinsfile1" in your pipeline.
+## Note: 
+### A. If you initially used terraform init, plan and apply commands to provission resources at the beginning of this project, use the "Jenkinsfile2" to deploy to our EKS cluster skipping the steps of attemting to provission resources that already exist.
+### B. If you already have your jenkins server setup and and wish to provission just the EKS cluster and deploy using Jenkins Pipeline, use "Jenkinsfile1" in your pipeline.
 
 ## 5. Test the application.
 
-Access our application using the loadbalancer endpoint on our eks-cluster
+Access our application using the loadbalancer endpoint on our eks-cluster. Navigate to EC2 Dashboard and select Load Balancers, you should see the one created by the application in our EKS cluster. Use the Load Balancer's endpoint to access our application.
+NB: You can use Route53 to point a Cname records and domain to the your desire website dns if you're planning to use this project as a starting point for your production Workload.
 
 ## 6. Destroy infrastructure
+tear down all resources provision by using terraform to avoid unnecessary charges using the terraform destroy command
+```bash
+terraform destroy --auto-approve
+```
