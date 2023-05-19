@@ -9,12 +9,12 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], 
-                userRemoteConfigs: [[url: 'https://github.com/Desmondotutu/web_image_test.git']]])
+                userRemoteConfigs: [[url: 'https://github.com/Desmondotutu/Jenkins-pipeline-deploy-to-eks.git']]])
             }
         }
         stage('OWASP DP Check') {
             steps {
-             dependencyCheck additionalArguments: ' --scan ./ ', odcInstallation: 'DP-Check'
+             dependencyCheck additionalArguments: ' --scan src/ ', odcInstallation: 'DP-Check'
              dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
