@@ -2,7 +2,11 @@
 # Steps for the project
 
 This project consist of setting up a CICD pipeline using Jenkins to provision AWS VPC and jenkins EC2 server and a kubernetes cluster in which our testapp will be deployed to using terraform (IaC tool). feel free to clone this repository, contribute to this project and comment.
-We can either use terraform commands manually to provision our servers and resources or use a configure a jenkins job to run and provision the resources and deploy our application automatically.
+We can either use terraform commands manually to provision our servers and resources or use a configure a jenkins job to run and provision the resources and deploy our application automatically. If not, use the aws configure command (to use this command, ensure aws-cli is installed on your local machine)
+use this links below to install aws-cli and terraform:
+https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
+
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
 ## 1. Create a Keypair that matches your keypair
 # jenkins-pipeline-deploy-to-eks
