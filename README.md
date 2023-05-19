@@ -65,6 +65,6 @@ terraform destroy --auto-approve
 ## 7. This step explains Jenkinsfille3 and how to use it
 If you wish to use the "src" folder containing HTML, CSS and JavaScript template downloaded freely from https://www.free-css.com/free-css-templates.
 Use Jenkinsfile3 and set up a separate job. This will use the Dockerfile to build a docker image of the src content using ngin:latest as based image.
-The pipeline consist of pulling code from github repository, running Dependency Checks, building a docker image and pushing it to dockerhub registry. Make sure you configure your github credentials in jenkins as used in the environment variable in the jenkinsfile3. Set a webhook from github to jenkins to automate the pipeline when changes are pushed to our repository or use use a Chrone Expression to periodically check out the gihub repository for code changes.
+The pipeline consist of pulling code from github repository, running Dependency Checks, building a docker image and pushing it to dockerhub registry. Make sure you configure your github credentials in jenkins as used in the environment variable in the jenkinsfile3, install Dependency Check plugin using plugin manager on jenkins. Set a webhook from github to jenkins to automate the pipeline when changes are pushed to our repository or use use a Chrone Expression to periodically check out the gihub repository for code changes.
 
 Happy coding!!!
