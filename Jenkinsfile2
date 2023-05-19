@@ -1,0 +1,22 @@
+#!/usr/bin/env groovy
+pipeline {
+    agent any
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        AWS_DEFAULT_REGION = "us-east-1"
+    }
+    stages {
+        stage("Deploy to EKS") {
+            steps {
+                script {
+                    dir('deployment-manifest') {
+                        sh "aws eks update-kubeconfig --name testapp-eks-cluster"
+                        sh "kubectl apply -f testapp-deployment.yaml"
+                        sh "kubectl apply -f testapp-service.yaml"
+                    }
+                }
+            }
+        }
+    }
+}
